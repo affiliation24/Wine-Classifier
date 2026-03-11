@@ -8,7 +8,7 @@
 
 Проект можно запускать локально как простое веб-приложение (интерфейс на Gradio).
 
-**Демо:** ссылка на HuggingFace Spaces — вставьте сюда свою: `...`
+**Демо:** ссылка на HuggingFace Spaces — `https://pyrowoon-wine-guide.hf.space`
 
 ---
 
