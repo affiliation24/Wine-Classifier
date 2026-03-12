@@ -73,9 +73,9 @@
 
 | Эпоха | Loss | Accuracy | Macro F1 |
 |---:|---:|---:|---:|
-| 1 | 0.8716 | 54.51% | 0.5303 |
-| 2 | 0.4873 | 72.55% | 0.7405 |
-| 3 | 0.3512 | 91.37% | 0.9256 |
+| 1 | 0.8673 | 67.06% | 0.7043 |
+| 2 | 0.4405 | 83.92% | 0.8463 |
+| 3 | 0.3278 | 89.02% | 0.8927 |
 
 ---
 
@@ -83,16 +83,30 @@
 
 ```
 wine-classifier/
-├── app.py                  # веб-интерфейс (Gradio)
-├── requirements.txt        # зависимости Python
-├── WineDataset.csv         # исходный датасет
-├── wine_model/
-│   ├── model.pt            # веса обученной модели
-│   └── tokenizer/          # файлы токенизатора BERT
-│       ├── config.json
-│       ├── tokenizer_config.json
-│       └── vocab.txt
-└── README.md
+├── README.md
+├── app.py                                  # веб-интерфейс
+├── data
+│   └── WineDataset.csv                     # исходный датасет
+├── mlflow.db
+├── mlruns
+│   └── 2
+│       └── 13a8dc1a376040a0b22151574baba286
+│           └── artifacts
+│               ├── confusion_matrix.png
+│               └── training_curves.png
+├── plots                                   # папка с графиками 
+│   ├── confusion_matrix.png
+│   ├── eda_overview.png
+│   └── training_curves.png
+├── requirements.txt                        # зависимости Python
+├── train.ipynb                             # обучающий ноутбук
+└── wine_model
+    ├── model.pt                            # веса обученной модели
+    └── tokenizer
+        ├── special_tokens_map.json
+        ├── tokenizer.json
+        ├── tokenizer_config.json
+        └── vocab.txt
 ```
 
 ---
@@ -136,15 +150,15 @@ python app.py
 
 Красное:
 
-> "Плотное и мощное, тона ежевики и сливы, ваниль после выдержки в дубе. Бархатистые танины и долгое шоколадное послевкусие."
+> "Enticing aromas of ripe cherries, blackberries, and light vanilla notes. The taste is rich, with velvety tannins and a warm, spicy finish. Perfect with steak or aged cheeses."
 
 Белое:
 
-> "Лёгкое и свежее, цитрус и крыжовник, много кислотности. Сухое, минеральное, с чистым коротким послевкусием."
+> "Fresh aromas of green apple, ripe pear, and white blossoms. Crisp and vibrant on the palate with balanced acidity, leading to a clean, mineral finish. Perfect as an aperitif or with light seafood."
 
 Розовое:
 
-> "Нежный аромат малины и арбуза, сухое и освежающее. Лёгкая фруктовость и аккуратные цветочные ноты."
+> "Delicate aromas of fresh strawberries, raspberries, and a hint of citrus zest. Light and refreshing on the palate with bright acidity and a subtle floral finish. Ideal for warm afternoons, picnics, or pairing with light salads."
 
 ---
 
@@ -155,7 +169,7 @@ python app.py
 - **Gradio** — веб-интерфейс для ввода текста
 - **scikit-learn** — предобработка и балансировка классов
 - **Pandas** — работа с данными
-
+- **MLflow** - хранение гиперпараметров
 ---
 
 ## Зачем проект
